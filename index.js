@@ -4,13 +4,14 @@ import dot from "dotenv";
 import cors from "cors";
 import userRoutes from "./Routes/user.Routes.js";
 import enquiryRoutes from "./Routes/enquiry.Routes.js";
+import productRoutes from "./Routes/product.Routes.js";
 dot.config();
 
 const app = express();
 app.use(
   cors({
-    origin: "*",
-    credentials: true,
+    origin: "http://localhost:5173",
+    // credentials: true,
   })
 );
 app.use(express.json());
@@ -32,3 +33,4 @@ mongoose
 
 app.use("/server/routes/userRoutes", userRoutes);
 app.use("/server/routes/enquiryRoutes", enquiryRoutes);
+app.use("/server/routes/productRoutes", productRoutes);

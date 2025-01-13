@@ -22,7 +22,6 @@ const enquirySchema = new mongoose.Schema(
     },
     country: {
       type: String,
-      required: true,
       trim: true,
     },
     message: {
@@ -32,7 +31,6 @@ const enquirySchema = new mongoose.Schema(
     },
     productOrService: {
       type: String,
-      required: true,
       trim: true,
     },
   },

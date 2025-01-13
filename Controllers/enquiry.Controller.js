@@ -9,9 +9,7 @@ export const enquirySendHandler = async (req, res) => {
       !email ||
       !name ||
       !phone ||
-      !country ||
-      !message ||
-      !productOrService
+      !message 
     ) {
       console.log(
         "All fields are required ",
@@ -19,8 +17,7 @@ export const enquirySendHandler = async (req, res) => {
         name,
         phone,
         country,
-        message,
-        productOrService
+        message
       );
       return res.status(404).json({ msg: "All fields are required" });
     }
