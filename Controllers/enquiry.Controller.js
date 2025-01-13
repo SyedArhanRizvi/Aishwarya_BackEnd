@@ -43,6 +43,8 @@ export const enquirySendHandler = async (req, res) => {
 };
 export const getAllEnquiriesInfo = async (req, res) => {
   try {
+    const allEnquiriesInfo = await EnquiryModel.find({}).sort({ createdAt: -1 });
+    return res.status(200).json({allEnquiriesInfo});
   } catch (error) {
     console.log(
       "There are some errors in your getAllEnquiriesInfo plz fix the bugs ",
@@ -51,3 +53,23 @@ export const getAllEnquiriesInfo = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Errors" });
   }
 };
+export const enquiryResolveController = async (req, res)=>{
+  const {userID} = req.params;
+  try {
+    const enquiryResolve = await EnquiryModel.findByIdAndUpdate(userID, {enquiryResolve:true});
+    return res.status(201).json({message:"Enquiry has been resolved"});
+  } catch (error) {
+    console.log("There are some errors in enquiryResolveController ", error);
+    return res.status(500).json({message:"Internal Server Error"});
+  }
+}
+export const enquiryDeleteController = async (req, res)=>{
+  const {userID} = req.params;
+  try {
+    const enquiryDelete = await EnquiryModel.findByIdAndDelete( userID );
+    return res.status(201).json({message:"Enquiry has been deleted"});
+  } catch (error) {
+    console.log("There are some errors in enquiryDeleteController ", error);
+    return res.status(500).json({message:"Internal Server Error"});
+  }
+}

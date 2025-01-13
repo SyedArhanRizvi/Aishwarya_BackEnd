@@ -5,6 +5,7 @@ import cors from "cors";
 import userRoutes from "./Routes/user.Routes.js";
 import enquiryRoutes from "./Routes/enquiry.Routes.js";
 import productRoutes from "./Routes/product.Routes.js";
+import activityRoutes from "./Routes/activity.Routes.js";
 dot.config();
 
 const app = express();
@@ -34,3 +35,4 @@ mongoose
 app.use("/server/routes/userRoutes", userRoutes);
 app.use("/server/routes/enquiryRoutes", enquiryRoutes);
 app.use("/server/routes/productRoutes", productRoutes);
+app.use("/server/routes/activityRoutes", activityRoutes);

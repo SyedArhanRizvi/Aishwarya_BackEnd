@@ -33,6 +33,10 @@ const enquirySchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    enquiryResolve:{
+      type:Boolean,
+      default:false
+    }
   },
   { timestamps: true }
 );
