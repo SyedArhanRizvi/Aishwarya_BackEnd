@@ -1,8 +1,8 @@
 import express from "express";
-import { addNewUserActivity,getAllUserActivities } from "../Controllers/activity.Controller.js";
+import { addNewActivityModel,getAllUserActivities } from "../Controllers/activity.Controller.js";
 
 const activityRoutes = express.Router();
 
-activityRoutes.post("/addNewActivity", addNewUserActivity);
-activityRoutes.get("/getAllUserActivities", getAllUserActivities);
+activityRoutes.post("/addNewActivity", addNewActivityModel);
+activityRoutes.get("/getAllUserActivities/:range", getAllUserActivities);
 export default activityRoutes;

@@ -5,5 +5,5 @@ const UserActivitySchema = new mongoose.Schema({
     timestamp: String,
     userAgent: String,
     page: String
-});
-export const UserActivity = mongoose.model("UserActivity", UserActivitySchema);
+}, {timestamps:true});
+export const ActivityModel = mongoose.model("ActivityModel", UserActivitySchema);
