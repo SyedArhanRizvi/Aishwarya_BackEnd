@@ -2,11 +2,9 @@ import mongoose from "mongoose";
 
 const foodProdSchema = new mongoose.Schema(
   {
-    price: { type: Number, required: true }, 
     businessType: {
       type: String,
       default: "Exporter, Supplier, Trader",
-      enum: ["Exporter", "Supplier", "Trader"], 
     },
     packagingSize: { type: String, required: true }, 
     cultivationType: {
@@ -21,8 +19,9 @@ const foodProdSchema = new mongoose.Schema(
     usage:{type:String},
     category:{type:String, required:true},
     productName:{type:String},
-    foodType:{type:String, required:true},
-    productImage:{type:String, required:true}
+    foodType:{type:String, required:true, default:"Fruits"},
+    productImage:{type:String, required:true},
+    description:{type:String, required:true, min:10, max:50}
   },
   { timestamps: true }
 );

@@ -12,9 +12,9 @@ cloudinary.config({
 export const addNewProductController = async (req, res) => {
   console.log(req.body);
   const {
-    price,
     businessType = "Exporter, Supplier, Trader", 
     packagingSize,
+    description,
     cultivationType,
     color,
     packagingType,
@@ -39,10 +39,11 @@ export const addNewProductController = async (req, res) => {
 console.log(imageUrl);
 
     const newProduct = new FoodProdSchema({
-      price,
+
       businessType,
       packagingSize,
       cultivationType,
+      description,
       color,
       packagingType,
       countryOfOrigin,
@@ -90,6 +91,7 @@ export const updatePrevProductController = async (req, res) => {
     containerWidth,
     location,
     usage,
+    description,
     category,
     productName,
     foodType,
@@ -110,6 +112,7 @@ export const updatePrevProductController = async (req, res) => {
           quality,
           containerWidth,
           location,
+          description,
           usage,
           category,
           productName,
@@ -183,10 +186,8 @@ export const getAllFruits = async (req, res) => {
     });
   }
 };
-
 export const getAllVegetables = async (req, res) => {
   console.log("Api Hit");
-  
   try {
     const allVegetables = await FoodProdSchema.find({ foodType: "Vegetables" });
     if (!allVegetables || allVegetables.length === 0) {
@@ -217,3 +218,26 @@ export const getAllProductController = async (req, res)=>{
     });
   }
 }
+
+export const getCategoriesFoodItem = async (req, res) => {
+  const productCategory = req.params.category;
+  console.log(productCategory);
+  try {
+    const productCategories = await FoodProdSchema.find({ category: { $regex: new RegExp(productCategory, 'i') } });
+
+    console.log(productCategories);
+    return res.status(200).json({
+      success: true,
+      message: "Successfully fetched categories by foodType",
+      data: productCategories
+    });
+
+  } catch (error) {
+    console.log("Some errors in getCategoriesFoodItem ", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to send categories products",
+      error: error.message,
+    });
+  }
+};
