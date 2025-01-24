@@ -9,6 +9,7 @@ import activityRoutes from "./Routes/activity.Routes.js";
 dot.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -21,10 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect(process.env.DB_CONNECTION)
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(PORT, () => {
       console.log(
         "D.B Connected Successfully and hosted on port ",
-        process.env.PORT
+        PORT
       );
     });
 })
