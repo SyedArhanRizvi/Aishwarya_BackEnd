@@ -12,10 +12,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(
   cors({
-    origin: "https://aishwarya-front-end.vercel.app",
-    // credentials: true,
+    origin: "https://aishwarya-front-end.vercel.app", // Frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true, // If cookies or authentication are required
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
